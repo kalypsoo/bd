@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="aae5ff98acdb48bbb187e65114a1b044" Name="Diagram1">
+        <EntityTypeShape EntityType="DBIG3A1Model.C__MigrationHistory" Width="1.5" PointX="8.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBIG3A1Model.Customer" Width="1.5" PointX="8.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBIG3A1Model.Emploi" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBIG3A1Model.Entreprise" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBIG3A1Model.Examan" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBIG3A1Model.ExamRisque" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBIG3A1Model.Exposition" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBIG3A1Model.Langue" Width="1.5" PointX="3.75" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBIG3A1Model.Personne" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBIG3A1Model.Profession" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBIG3A1Model.Risque" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBIG3A1Model.TraductionExam" Width="1.5" PointX="9" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBIG3A1Model.TraductionProf" Width="1.5" PointX="6" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBIG3A1Model.TraductionRisque" Width="1.5" PointX="6" PointY="10.625" IsExpanded="true" />
+        <AssociationConnector Association="DBIG3A1Model.REF_Emplo_Entre_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="DBIG3A1Model.REF_Emplo_Perso_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="DBIG3A1Model.REF_Emplo_Profe_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="DBIG3A1Model.REF_Expos_Emplo" ManuallyRouted="false" />
+        <AssociationConnector Association="DBIG3A1Model.REF_ExamR_Exame" ManuallyRouted="false" />
+        <AssociationConnector Association="DBIG3A1Model.REF_Tradu_Exame_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="DBIG3A1Model.REF_ExamR_Risqu_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="DBIG3A1Model.REF_Expos_Risqu_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="DBIG3A1Model.REF_Tradu_Langu_1_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="DBIG3A1Model.REF_Tradu_Langu_2_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="DBIG3A1Model.REF_Tradu_Langu_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="DBIG3A1Model.REF_Tradu_Profe_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="DBIG3A1Model.REF_Tradu_Risqu_FK" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

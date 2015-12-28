@@ -1,0 +1,39 @@
+﻿@model ProjetBD.Models.ExamRisque
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ExamRisque</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Risque.libelle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Risque.libelle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Examan.libelle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Examan.libelle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Commentaire)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Commentaire)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { libelleRisque = Model.libelle, libelleExamen = Model.E_E_libelle }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

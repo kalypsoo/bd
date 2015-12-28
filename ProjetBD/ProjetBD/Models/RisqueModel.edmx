@@ -1,0 +1,932 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DBIG3A1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountBalance" Type="float" Nullable="false" />
+          <Property Name="AdressLine1" Type="nvarchar(max)" />
+          <Property Name="AdressLine2" Type="nvarchar(max)" />
+          <Property Name="City" Type="nvarchar(max)" />
+          <Property Name="Country" Type="nvarchar(max)" />
+          <Property Name="EMail" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="PostCode" Type="nvarchar(max)" />
+          <Property Name="Remark" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Emploi">
+          <Key>
+            <PropertyRef Name="numero" />
+          </Key>
+          <Property Name="dateEntree" Type="date" Nullable="false" />
+          <Property Name="dateSortie" Type="date" />
+          <Property Name="numero" Type="numeric" Precision="7" Scale="0" Nullable="false" />
+          <Property Name="code" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="R_1_numero" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="R_numero" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Entreprise">
+          <Key>
+            <PropertyRef Name="numero" />
+          </Key>
+          <Property Name="numero" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="denomination" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="adresse" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="numTel" Type="numeric" Precision="11" Scale="0" Nullable="false" />
+          <Property Name="nbPersonneSOumise" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="nbPersonneNonSoumise" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Examen">
+          <Key>
+            <PropertyRef Name="libelle" />
+          </Key>
+          <Property Name="libelle" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="periodicite" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="numCompte" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="prixSoumis" Type="numeric" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="prixNonSoumis" Type="numeric" Precision="5" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ExamRisque">
+          <Key>
+            <PropertyRef Name="E_E_libelle" />
+            <PropertyRef Name="libelle" />
+          </Key>
+          <Property Name="E_E_libelle" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="libelle" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Commentaire" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Exposition">
+          <Key>
+            <PropertyRef Name="numero" />
+            <PropertyRef Name="libelle" />
+          </Key>
+          <Property Name="numero" Type="numeric" Precision="7" Scale="0" Nullable="false" />
+          <Property Name="libelle" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Commentaire" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Langue">
+          <Key>
+            <PropertyRef Name="codeLangue" />
+          </Key>
+          <Property Name="codeLangue" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="designation" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Personne">
+          <Key>
+            <PropertyRef Name="numero" />
+          </Key>
+          <Property Name="numero" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="nom" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="prenom" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="adr_pays" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="adr_ville" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="adr_cp" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="adr_rue" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="adr_numero" Type="numeric" Precision="7" Scale="0" Nullable="false" />
+          <Property Name="demandeExamen" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="Profession">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Risque">
+          <Key>
+            <PropertyRef Name="libelle" />
+          </Key>
+          <Property Name="libelle" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TraductionExam">
+          <Key>
+            <PropertyRef Name="idTraduction" />
+          </Key>
+          <Property Name="idTraduction" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="DesExamLgue" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="codeLangue" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="libelle" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TraductionProf">
+          <Key>
+            <PropertyRef Name="idTraduction" />
+          </Key>
+          <Property Name="idTraduction" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="desProfTrad" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="code" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="codeLangue" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TraductionRisque">
+          <Key>
+            <PropertyRef Name="idTraduction" />
+          </Key>
+          <Property Name="idTraduction" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="DesRisLgue" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="libelle" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="codeLangue" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <Association Name="REF_Emplo_Entre_FK">
+          <End Role="Entreprise" Type="Self.Entreprise" Multiplicity="1" />
+          <End Role="Emploi" Type="Self.Emploi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entreprise">
+              <PropertyRef Name="numero" />
+            </Principal>
+            <Dependent Role="Emploi">
+              <PropertyRef Name="R_1_numero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REF_Emplo_Perso_FK">
+          <End Role="Personne" Type="Self.Personne" Multiplicity="1" />
+          <End Role="Emploi" Type="Self.Emploi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personne">
+              <PropertyRef Name="numero" />
+            </Principal>
+            <Dependent Role="Emploi">
+              <PropertyRef Name="R_numero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REF_Emplo_Profe_FK">
+          <End Role="Profession" Type="Self.Profession" Multiplicity="1" />
+          <End Role="Emploi" Type="Self.Emploi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profession">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="Emploi">
+              <PropertyRef Name="code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REF_ExamR_Exame">
+          <End Role="Examen" Type="Self.Examen" Multiplicity="1" />
+          <End Role="ExamRisque" Type="Self.ExamRisque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Examen">
+              <PropertyRef Name="libelle" />
+            </Principal>
+            <Dependent Role="ExamRisque">
+              <PropertyRef Name="E_E_libelle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REF_ExamR_Risqu_FK">
+          <End Role="Risque" Type="Self.Risque" Multiplicity="1" />
+          <End Role="ExamRisque" Type="Self.ExamRisque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Risque">
+              <PropertyRef Name="libelle" />
+            </Principal>
+            <Dependent Role="ExamRisque">
+              <PropertyRef Name="libelle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REF_Expos_Emplo">
+          <End Role="Emploi" Type="Self.Emploi" Multiplicity="1" />
+          <End Role="Exposition" Type="Self.Exposition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Emploi">
+              <PropertyRef Name="numero" />
+            </Principal>
+            <Dependent Role="Exposition">
+              <PropertyRef Name="numero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REF_Expos_Risqu_FK">
+          <End Role="Risque" Type="Self.Risque" Multiplicity="1" />
+          <End Role="Exposition" Type="Self.Exposition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Risque">
+              <PropertyRef Name="libelle" />
+            </Principal>
+            <Dependent Role="Exposition">
+              <PropertyRef Name="libelle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REF_Tradu_Exame_FK">
+          <End Role="Examen" Type="Self.Examen" Multiplicity="1" />
+          <End Role="TraductionExam" Type="Self.TraductionExam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Examen">
+              <PropertyRef Name="libelle" />
+            </Principal>
+            <Dependent Role="TraductionExam">
+              <PropertyRef Name="libelle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REF_Tradu_Langu_1_FK">
+          <End Role="Langue" Type="Self.Langue" Multiplicity="1" />
+          <End Role="TraductionProf" Type="Self.TraductionProf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Langue">
+              <PropertyRef Name="codeLangue" />
+            </Principal>
+            <Dependent Role="TraductionProf">
+              <PropertyRef Name="codeLangue" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REF_Tradu_Langu_2_FK">
+          <End Role="Langue" Type="Self.Langue" Multiplicity="1" />
+          <End Role="TraductionExam" Type="Self.TraductionExam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Langue">
+              <PropertyRef Name="codeLangue" />
+            </Principal>
+            <Dependent Role="TraductionExam">
+              <PropertyRef Name="codeLangue" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REF_Tradu_Langu_FK">
+          <End Role="Langue" Type="Self.Langue" Multiplicity="1" />
+          <End Role="TraductionRisque" Type="Self.TraductionRisque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Langue">
+              <PropertyRef Name="codeLangue" />
+            </Principal>
+            <Dependent Role="TraductionRisque">
+              <PropertyRef Name="codeLangue" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REF_Tradu_Profe_FK">
+          <End Role="Profession" Type="Self.Profession" Multiplicity="1" />
+          <End Role="TraductionProf" Type="Self.TraductionProf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profession">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="TraductionProf">
+              <PropertyRef Name="code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REF_Tradu_Risqu_FK">
+          <End Role="Risque" Type="Self.Risque" Multiplicity="1" />
+          <End Role="TraductionRisque" Type="Self.TraductionRisque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Risque">
+              <PropertyRef Name="libelle" />
+            </Principal>
+            <Dependent Role="TraductionRisque">
+              <PropertyRef Name="libelle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBIG3A1ModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Emploi" EntityType="Self.Emploi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Entreprise" EntityType="Self.Entreprise" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Examen" EntityType="Self.Examen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExamRisque" EntityType="Self.ExamRisque" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Exposition" EntityType="Self.Exposition" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Langue" EntityType="Self.Langue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Personne" EntityType="Self.Personne" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Profession" EntityType="Self.Profession" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Risque" EntityType="Self.Risque" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TraductionExam" EntityType="Self.TraductionExam" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TraductionProf" EntityType="Self.TraductionProf" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TraductionRisque" EntityType="Self.TraductionRisque" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="REF_Emplo_Entre_FK" Association="Self.REF_Emplo_Entre_FK">
+            <End Role="Entreprise" EntitySet="Entreprise" />
+            <End Role="Emploi" EntitySet="Emploi" />
+          </AssociationSet>
+          <AssociationSet Name="REF_Emplo_Perso_FK" Association="Self.REF_Emplo_Perso_FK">
+            <End Role="Personne" EntitySet="Personne" />
+            <End Role="Emploi" EntitySet="Emploi" />
+          </AssociationSet>
+          <AssociationSet Name="REF_Emplo_Profe_FK" Association="Self.REF_Emplo_Profe_FK">
+            <End Role="Profession" EntitySet="Profession" />
+            <End Role="Emploi" EntitySet="Emploi" />
+          </AssociationSet>
+          <AssociationSet Name="REF_ExamR_Exame" Association="Self.REF_ExamR_Exame">
+            <End Role="Examen" EntitySet="Examen" />
+            <End Role="ExamRisque" EntitySet="ExamRisque" />
+          </AssociationSet>
+          <AssociationSet Name="REF_ExamR_Risqu_FK" Association="Self.REF_ExamR_Risqu_FK">
+            <End Role="Risque" EntitySet="Risque" />
+            <End Role="ExamRisque" EntitySet="ExamRisque" />
+          </AssociationSet>
+          <AssociationSet Name="REF_Expos_Emplo" Association="Self.REF_Expos_Emplo">
+            <End Role="Emploi" EntitySet="Emploi" />
+            <End Role="Exposition" EntitySet="Exposition" />
+          </AssociationSet>
+          <AssociationSet Name="REF_Expos_Risqu_FK" Association="Self.REF_Expos_Risqu_FK">
+            <End Role="Risque" EntitySet="Risque" />
+            <End Role="Exposition" EntitySet="Exposition" />
+          </AssociationSet>
+          <AssociationSet Name="REF_Tradu_Exame_FK" Association="Self.REF_Tradu_Exame_FK">
+            <End Role="Examen" EntitySet="Examen" />
+            <End Role="TraductionExam" EntitySet="TraductionExam" />
+          </AssociationSet>
+          <AssociationSet Name="REF_Tradu_Langu_1_FK" Association="Self.REF_Tradu_Langu_1_FK">
+            <End Role="Langue" EntitySet="Langue" />
+            <End Role="TraductionProf" EntitySet="TraductionProf" />
+          </AssociationSet>
+          <AssociationSet Name="REF_Tradu_Langu_2_FK" Association="Self.REF_Tradu_Langu_2_FK">
+            <End Role="Langue" EntitySet="Langue" />
+            <End Role="TraductionExam" EntitySet="TraductionExam" />
+          </AssociationSet>
+          <AssociationSet Name="REF_Tradu_Langu_FK" Association="Self.REF_Tradu_Langu_FK">
+            <End Role="Langue" EntitySet="Langue" />
+            <End Role="TraductionRisque" EntitySet="TraductionRisque" />
+          </AssociationSet>
+          <AssociationSet Name="REF_Tradu_Profe_FK" Association="Self.REF_Tradu_Profe_FK">
+            <End Role="Profession" EntitySet="Profession" />
+            <End Role="TraductionProf" EntitySet="TraductionProf" />
+          </AssociationSet>
+          <AssociationSet Name="REF_Tradu_Risqu_FK" Association="Self.REF_Tradu_Risqu_FK">
+            <End Role="Risque" EntitySet="Risque" />
+            <End Role="TraductionRisque" EntitySet="TraductionRisque" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBIG3A1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountBalance" Type="Double" Nullable="false" />
+          <Property Name="AdressLine1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AdressLine2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EMail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PostCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Emploi">
+          <Key>
+            <PropertyRef Name="numero" />
+          </Key>
+          <Property Name="dateEntree" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="dateSortie" Type="DateTime" Precision="0" />
+          <Property Name="numero" Type="Decimal" Precision="7" Scale="0" Nullable="false" />
+          <Property Name="code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="R_1_numero" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="R_numero" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Entreprise" Relationship="Self.REF_Emplo_Entre_FK" FromRole="Emploi" ToRole="Entreprise" />
+          <NavigationProperty Name="Personne" Relationship="Self.REF_Emplo_Perso_FK" FromRole="Emploi" ToRole="Personne" />
+          <NavigationProperty Name="Profession" Relationship="Self.REF_Emplo_Profe_FK" FromRole="Emploi" ToRole="Profession" />
+          <NavigationProperty Name="Expositions" Relationship="Self.REF_Expos_Emplo" FromRole="Emploi" ToRole="Exposition" />
+        </EntityType>
+        <EntityType Name="Entreprise">
+          <Key>
+            <PropertyRef Name="numero" />
+          </Key>
+          <Property Name="numero" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="denomination" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="adresse" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="numTel" Type="Decimal" Precision="11" Scale="0" Nullable="false" />
+          <Property Name="nbPersonneSOumise" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="nbPersonneNonSoumise" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Emplois" Relationship="Self.REF_Emplo_Entre_FK" FromRole="Entreprise" ToRole="Emploi" />
+        </EntityType>
+        <EntityType Name="Examan">
+          <Key>
+            <PropertyRef Name="libelle" />
+          </Key>
+          <Property Name="libelle" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="periodicite" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="numCompte" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="prixSoumis" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="prixNonSoumis" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <NavigationProperty Name="ExamRisques" Relationship="Self.REF_ExamR_Exame" FromRole="Examen" ToRole="ExamRisque" />
+          <NavigationProperty Name="TraductionExams" Relationship="Self.REF_Tradu_Exame_FK" FromRole="Examen" ToRole="TraductionExam" />
+        </EntityType>
+        <EntityType Name="ExamRisque">
+          <Key>
+            <PropertyRef Name="E_E_libelle" />
+            <PropertyRef Name="libelle" />
+          </Key>
+          <Property Name="E_E_libelle" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="libelle" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Commentaire" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Examan" Relationship="Self.REF_ExamR_Exame" FromRole="ExamRisque" ToRole="Examen" />
+          <NavigationProperty Name="Risque" Relationship="Self.REF_ExamR_Risqu_FK" FromRole="ExamRisque" ToRole="Risque" />
+        </EntityType>
+        <EntityType Name="Exposition">
+          <Key>
+            <PropertyRef Name="numero" />
+            <PropertyRef Name="libelle" />
+          </Key>
+          <Property Name="numero" Type="Decimal" Precision="7" Scale="0" Nullable="false" />
+          <Property Name="libelle" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Commentaire" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Emploi" Relationship="Self.REF_Expos_Emplo" FromRole="Exposition" ToRole="Emploi" />
+          <NavigationProperty Name="Risque" Relationship="Self.REF_Expos_Risqu_FK" FromRole="Exposition" ToRole="Risque" />
+        </EntityType>
+        <EntityType Name="Langue">
+          <Key>
+            <PropertyRef Name="codeLangue" />
+          </Key>
+          <Property Name="codeLangue" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="designation" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TraductionProfs" Relationship="Self.REF_Tradu_Langu_1_FK" FromRole="Langue" ToRole="TraductionProf" />
+          <NavigationProperty Name="TraductionExams" Relationship="Self.REF_Tradu_Langu_2_FK" FromRole="Langue" ToRole="TraductionExam" />
+          <NavigationProperty Name="TraductionRisques" Relationship="Self.REF_Tradu_Langu_FK" FromRole="Langue" ToRole="TraductionRisque" />
+        </EntityType>
+        <EntityType Name="Personne">
+          <Key>
+            <PropertyRef Name="numero" />
+          </Key>
+          <Property Name="numero" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="nom" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="prenom" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="adr_pays" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="adr_ville" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="adr_cp" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="adr_rue" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="adr_numero" Type="Decimal" Precision="7" Scale="0" Nullable="false" />
+          <Property Name="demandeExamen" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Emplois" Relationship="Self.REF_Emplo_Perso_FK" FromRole="Personne" ToRole="Emploi" />
+        </EntityType>
+        <EntityType Name="Profession">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Emplois" Relationship="Self.REF_Emplo_Profe_FK" FromRole="Profession" ToRole="Emploi" />
+          <NavigationProperty Name="TraductionProfs" Relationship="Self.REF_Tradu_Profe_FK" FromRole="Profession" ToRole="TraductionProf" />
+        </EntityType>
+        <EntityType Name="Risque">
+          <Key>
+            <PropertyRef Name="libelle" />
+          </Key>
+          <Property Name="libelle" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ExamRisques" Relationship="Self.REF_ExamR_Risqu_FK" FromRole="Risque" ToRole="ExamRisque" />
+          <NavigationProperty Name="Expositions" Relationship="Self.REF_Expos_Risqu_FK" FromRole="Risque" ToRole="Exposition" />
+          <NavigationProperty Name="TraductionRisques" Relationship="Self.REF_Tradu_Risqu_FK" FromRole="Risque" ToRole="TraductionRisque" />
+        </EntityType>
+        <EntityType Name="TraductionExam">
+          <Key>
+            <PropertyRef Name="idTraduction" />
+          </Key>
+          <Property Name="idTraduction" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="DesExamLgue" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="codeLangue" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="libelle" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Examan" Relationship="Self.REF_Tradu_Exame_FK" FromRole="TraductionExam" ToRole="Examen" />
+          <NavigationProperty Name="Langue" Relationship="Self.REF_Tradu_Langu_2_FK" FromRole="TraductionExam" ToRole="Langue" />
+        </EntityType>
+        <EntityType Name="TraductionProf">
+          <Key>
+            <PropertyRef Name="idTraduction" />
+          </Key>
+          <Property Name="idTraduction" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="desProfTrad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="codeLangue" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Langue" Relationship="Self.REF_Tradu_Langu_1_FK" FromRole="TraductionProf" ToRole="Langue" />
+          <NavigationProperty Name="Profession" Relationship="Self.REF_Tradu_Profe_FK" FromRole="TraductionProf" ToRole="Profession" />
+        </EntityType>
+        <EntityType Name="TraductionRisque">
+          <Key>
+            <PropertyRef Name="idTraduction" />
+          </Key>
+          <Property Name="idTraduction" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="DesRisLgue" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="libelle" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="codeLangue" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Langue" Relationship="Self.REF_Tradu_Langu_FK" FromRole="TraductionRisque" ToRole="Langue" />
+          <NavigationProperty Name="Risque" Relationship="Self.REF_Tradu_Risqu_FK" FromRole="TraductionRisque" ToRole="Risque" />
+        </EntityType>
+        <Association Name="REF_Emplo_Entre_FK">
+          <End Role="Entreprise" Type="Self.Entreprise" Multiplicity="1" />
+          <End Role="Emploi" Type="Self.Emploi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entreprise">
+              <PropertyRef Name="numero" />
+            </Principal>
+            <Dependent Role="Emploi">
+              <PropertyRef Name="R_1_numero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REF_Emplo_Perso_FK">
+          <End Role="Personne" Type="Self.Personne" Multiplicity="1" />
+          <End Role="Emploi" Type="Self.Emploi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personne">
+              <PropertyRef Name="numero" />
+            </Principal>
+            <Dependent Role="Emploi">
+              <PropertyRef Name="R_numero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REF_Emplo_Profe_FK">
+          <End Role="Profession" Type="Self.Profession" Multiplicity="1" />
+          <End Role="Emploi" Type="Self.Emploi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profession">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="Emploi">
+              <PropertyRef Name="code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REF_Expos_Emplo">
+          <End Role="Emploi" Type="Self.Emploi" Multiplicity="1" />
+          <End Role="Exposition" Type="Self.Exposition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Emploi">
+              <PropertyRef Name="numero" />
+            </Principal>
+            <Dependent Role="Exposition">
+              <PropertyRef Name="numero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REF_ExamR_Exame">
+          <End Role="Examen" Type="Self.Examan" Multiplicity="1" />
+          <End Role="ExamRisque" Type="Self.ExamRisque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Examen">
+              <PropertyRef Name="libelle" />
+            </Principal>
+            <Dependent Role="ExamRisque">
+              <PropertyRef Name="E_E_libelle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REF_Tradu_Exame_FK">
+          <End Role="Examen" Type="Self.Examan" Multiplicity="1" />
+          <End Role="TraductionExam" Type="Self.TraductionExam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Examen">
+              <PropertyRef Name="libelle" />
+            </Principal>
+            <Dependent Role="TraductionExam">
+              <PropertyRef Name="libelle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REF_ExamR_Risqu_FK">
+          <End Role="Risque" Type="Self.Risque" Multiplicity="1" />
+          <End Role="ExamRisque" Type="Self.ExamRisque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Risque">
+              <PropertyRef Name="libelle" />
+            </Principal>
+            <Dependent Role="ExamRisque">
+              <PropertyRef Name="libelle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REF_Expos_Risqu_FK">
+          <End Role="Risque" Type="Self.Risque" Multiplicity="1" />
+          <End Role="Exposition" Type="Self.Exposition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Risque">
+              <PropertyRef Name="libelle" />
+            </Principal>
+            <Dependent Role="Exposition">
+              <PropertyRef Name="libelle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REF_Tradu_Langu_1_FK">
+          <End Role="Langue" Type="Self.Langue" Multiplicity="1" />
+          <End Role="TraductionProf" Type="Self.TraductionProf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Langue">
+              <PropertyRef Name="codeLangue" />
+            </Principal>
+            <Dependent Role="TraductionProf">
+              <PropertyRef Name="codeLangue" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REF_Tradu_Langu_2_FK">
+          <End Role="Langue" Type="Self.Langue" Multiplicity="1" />
+          <End Role="TraductionExam" Type="Self.TraductionExam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Langue">
+              <PropertyRef Name="codeLangue" />
+            </Principal>
+            <Dependent Role="TraductionExam">
+              <PropertyRef Name="codeLangue" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REF_Tradu_Langu_FK">
+          <End Role="Langue" Type="Self.Langue" Multiplicity="1" />
+          <End Role="TraductionRisque" Type="Self.TraductionRisque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Langue">
+              <PropertyRef Name="codeLangue" />
+            </Principal>
+            <Dependent Role="TraductionRisque">
+              <PropertyRef Name="codeLangue" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REF_Tradu_Profe_FK">
+          <End Role="Profession" Type="Self.Profession" Multiplicity="1" />
+          <End Role="TraductionProf" Type="Self.TraductionProf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profession">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="TraductionProf">
+              <PropertyRef Name="code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REF_Tradu_Risqu_FK">
+          <End Role="Risque" Type="Self.Risque" Multiplicity="1" />
+          <End Role="TraductionRisque" Type="Self.TraductionRisque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Risque">
+              <PropertyRef Name="libelle" />
+            </Principal>
+            <Dependent Role="TraductionRisque">
+              <PropertyRef Name="libelle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBIG3A1Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Emplois" EntityType="Self.Emploi" />
+          <EntitySet Name="Entreprises" EntityType="Self.Entreprise" />
+          <EntitySet Name="Examen" EntityType="Self.Examan" />
+          <EntitySet Name="ExamRisques" EntityType="Self.ExamRisque" />
+          <EntitySet Name="Expositions" EntityType="Self.Exposition" />
+          <EntitySet Name="Langues" EntityType="Self.Langue" />
+          <EntitySet Name="Personnes" EntityType="Self.Personne" />
+          <EntitySet Name="Professions" EntityType="Self.Profession" />
+          <EntitySet Name="Risques" EntityType="Self.Risque" />
+          <EntitySet Name="TraductionExams" EntityType="Self.TraductionExam" />
+          <EntitySet Name="TraductionProfs" EntityType="Self.TraductionProf" />
+          <EntitySet Name="TraductionRisques" EntityType="Self.TraductionRisque" />
+          <AssociationSet Name="REF_Emplo_Entre_FK" Association="Self.REF_Emplo_Entre_FK">
+            <End Role="Entreprise" EntitySet="Entreprises" />
+            <End Role="Emploi" EntitySet="Emplois" />
+          </AssociationSet>
+          <AssociationSet Name="REF_Emplo_Perso_FK" Association="Self.REF_Emplo_Perso_FK">
+            <End Role="Personne" EntitySet="Personnes" />
+            <End Role="Emploi" EntitySet="Emplois" />
+          </AssociationSet>
+          <AssociationSet Name="REF_Emplo_Profe_FK" Association="Self.REF_Emplo_Profe_FK">
+            <End Role="Profession" EntitySet="Professions" />
+            <End Role="Emploi" EntitySet="Emplois" />
+          </AssociationSet>
+          <AssociationSet Name="REF_Expos_Emplo" Association="Self.REF_Expos_Emplo">
+            <End Role="Emploi" EntitySet="Emplois" />
+            <End Role="Exposition" EntitySet="Expositions" />
+          </AssociationSet>
+          <AssociationSet Name="REF_ExamR_Exame" Association="Self.REF_ExamR_Exame">
+            <End Role="Examen" EntitySet="Examen" />
+            <End Role="ExamRisque" EntitySet="ExamRisques" />
+          </AssociationSet>
+          <AssociationSet Name="REF_Tradu_Exame_FK" Association="Self.REF_Tradu_Exame_FK">
+            <End Role="Examen" EntitySet="Examen" />
+            <End Role="TraductionExam" EntitySet="TraductionExams" />
+          </AssociationSet>
+          <AssociationSet Name="REF_ExamR_Risqu_FK" Association="Self.REF_ExamR_Risqu_FK">
+            <End Role="Risque" EntitySet="Risques" />
+            <End Role="ExamRisque" EntitySet="ExamRisques" />
+          </AssociationSet>
+          <AssociationSet Name="REF_Expos_Risqu_FK" Association="Self.REF_Expos_Risqu_FK">
+            <End Role="Risque" EntitySet="Risques" />
+            <End Role="Exposition" EntitySet="Expositions" />
+          </AssociationSet>
+          <AssociationSet Name="REF_Tradu_Langu_1_FK" Association="Self.REF_Tradu_Langu_1_FK">
+            <End Role="Langue" EntitySet="Langues" />
+            <End Role="TraductionProf" EntitySet="TraductionProfs" />
+          </AssociationSet>
+          <AssociationSet Name="REF_Tradu_Langu_2_FK" Association="Self.REF_Tradu_Langu_2_FK">
+            <End Role="Langue" EntitySet="Langues" />
+            <End Role="TraductionExam" EntitySet="TraductionExams" />
+          </AssociationSet>
+          <AssociationSet Name="REF_Tradu_Langu_FK" Association="Self.REF_Tradu_Langu_FK">
+            <End Role="Langue" EntitySet="Langues" />
+            <End Role="TraductionRisque" EntitySet="TraductionRisques" />
+          </AssociationSet>
+          <AssociationSet Name="REF_Tradu_Profe_FK" Association="Self.REF_Tradu_Profe_FK">
+            <End Role="Profession" EntitySet="Professions" />
+            <End Role="TraductionProf" EntitySet="TraductionProfs" />
+          </AssociationSet>
+          <AssociationSet Name="REF_Tradu_Risqu_FK" Association="Self.REF_Tradu_Risqu_FK">
+            <End Role="Risque" EntitySet="Risques" />
+            <End Role="TraductionRisque" EntitySet="TraductionRisques" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBIG3A1ModelStoreContainer" CdmEntityContainer="DBIG3A1Entities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="DBIG3A1Model.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="DBIG3A1Model.Customer">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="AccountBalance" ColumnName="AccountBalance" />
+                <ScalarProperty Name="AdressLine1" ColumnName="AdressLine1" />
+                <ScalarProperty Name="AdressLine2" ColumnName="AdressLine2" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="EMail" ColumnName="EMail" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Emplois">
+            <EntityTypeMapping TypeName="DBIG3A1Model.Emploi">
+              <MappingFragment StoreEntitySet="Emploi">
+                <ScalarProperty Name="dateEntree" ColumnName="dateEntree" />
+                <ScalarProperty Name="dateSortie" ColumnName="dateSortie" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="R_1_numero" ColumnName="R_1_numero" />
+                <ScalarProperty Name="R_numero" ColumnName="R_numero" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Entreprises">
+            <EntityTypeMapping TypeName="DBIG3A1Model.Entreprise">
+              <MappingFragment StoreEntitySet="Entreprise">
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="denomination" ColumnName="denomination" />
+                <ScalarProperty Name="adresse" ColumnName="adresse" />
+                <ScalarProperty Name="numTel" ColumnName="numTel" />
+                <ScalarProperty Name="nbPersonneSOumise" ColumnName="nbPersonneSOumise" />
+                <ScalarProperty Name="nbPersonneNonSoumise" ColumnName="nbPersonneNonSoumise" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Examen">
+            <EntityTypeMapping TypeName="DBIG3A1Model.Examan">
+              <MappingFragment StoreEntitySet="Examen">
+                <ScalarProperty Name="libelle" ColumnName="libelle" />
+                <ScalarProperty Name="periodicite" ColumnName="periodicite" />
+                <ScalarProperty Name="numCompte" ColumnName="numCompte" />
+                <ScalarProperty Name="prixSoumis" ColumnName="prixSoumis" />
+                <ScalarProperty Name="prixNonSoumis" ColumnName="prixNonSoumis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExamRisques">
+            <EntityTypeMapping TypeName="DBIG3A1Model.ExamRisque">
+              <MappingFragment StoreEntitySet="ExamRisque">
+                <ScalarProperty Name="E_E_libelle" ColumnName="E_E_libelle" />
+                <ScalarProperty Name="libelle" ColumnName="libelle" />
+                <ScalarProperty Name="Commentaire" ColumnName="Commentaire" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Expositions">
+            <EntityTypeMapping TypeName="DBIG3A1Model.Exposition">
+              <MappingFragment StoreEntitySet="Exposition">
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="libelle" ColumnName="libelle" />
+                <ScalarProperty Name="Commentaire" ColumnName="Commentaire" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Langues">
+            <EntityTypeMapping TypeName="DBIG3A1Model.Langue">
+              <MappingFragment StoreEntitySet="Langue">
+                <ScalarProperty Name="codeLangue" ColumnName="codeLangue" />
+                <ScalarProperty Name="designation" ColumnName="designation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personnes">
+            <EntityTypeMapping TypeName="DBIG3A1Model.Personne">
+              <MappingFragment StoreEntitySet="Personne">
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="prenom" ColumnName="prenom" />
+                <ScalarProperty Name="adr_pays" ColumnName="adr_pays" />
+                <ScalarProperty Name="adr_ville" ColumnName="adr_ville" />
+                <ScalarProperty Name="adr_cp" ColumnName="adr_cp" />
+                <ScalarProperty Name="adr_rue" ColumnName="adr_rue" />
+                <ScalarProperty Name="adr_numero" ColumnName="adr_numero" />
+                <ScalarProperty Name="demandeExamen" ColumnName="demandeExamen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Professions">
+            <EntityTypeMapping TypeName="DBIG3A1Model.Profession">
+              <MappingFragment StoreEntitySet="Profession">
+                <ScalarProperty Name="code" ColumnName="code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Risques">
+            <EntityTypeMapping TypeName="DBIG3A1Model.Risque">
+              <MappingFragment StoreEntitySet="Risque">
+                <ScalarProperty Name="libelle" ColumnName="libelle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TraductionExams">
+            <EntityTypeMapping TypeName="DBIG3A1Model.TraductionExam">
+              <MappingFragment StoreEntitySet="TraductionExam">
+                <ScalarProperty Name="idTraduction" ColumnName="idTraduction" />
+                <ScalarProperty Name="DesExamLgue" ColumnName="DesExamLgue" />
+                <ScalarProperty Name="codeLangue" ColumnName="codeLangue" />
+                <ScalarProperty Name="libelle" ColumnName="libelle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TraductionProfs">
+            <EntityTypeMapping TypeName="DBIG3A1Model.TraductionProf">
+              <MappingFragment StoreEntitySet="TraductionProf">
+                <ScalarProperty Name="idTraduction" ColumnName="idTraduction" />
+                <ScalarProperty Name="desProfTrad" ColumnName="desProfTrad" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="codeLangue" ColumnName="codeLangue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TraductionRisques">
+            <EntityTypeMapping TypeName="DBIG3A1Model.TraductionRisque">
+              <MappingFragment StoreEntitySet="TraductionRisque">
+                <ScalarProperty Name="idTraduction" ColumnName="idTraduction" />
+                <ScalarProperty Name="DesRisLgue" ColumnName="DesRisLgue" />
+                <ScalarProperty Name="libelle" ColumnName="libelle" />
+                <ScalarProperty Name="codeLangue" ColumnName="codeLangue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,57 @@
+﻿@model ProjetBD.Models.Examan
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Examan</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.libelle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.libelle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.periodicite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.periodicite)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numCompte)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numCompte)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.prixSoumis)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prixSoumis)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.prixNonSoumis)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prixNonSoumis)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.libelle }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

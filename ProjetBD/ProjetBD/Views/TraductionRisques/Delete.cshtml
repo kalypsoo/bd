@@ -1,0 +1,48 @@
+﻿@model ProjetBD.Models.TraductionRisque
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>TraductionRisque</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DesRisLgue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DesRisLgue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Langue.designation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Langue.designation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Risque.libelle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Risque.libelle)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<ProjetBD.Models.ExamRisque>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.E_E_libelle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Risque.libelle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Commentaire)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.E_E_libelle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Risque.libelle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Commentaire)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {libelleRisque = item.libelle,libelleExamen = item.E_E_libelle }) |
+            @Html.ActionLink("Details", "Details", new { libelleRisque = item.libelle, libelleExamen = item.E_E_libelle }) |
+            @Html.ActionLink("Delete", "Delete", new {libelleRisque = item.libelle,libelleExamen = item.E_E_libelle })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,41 @@
+﻿@model ProjetBD.Models.Exposition
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Exposition</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Emploi.Personne.fullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Emploi.Personne.fullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Risque.libelle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Risque.libelle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Commentaire)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Commentaire)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { libelle = Model.libelle, numero = Model.numero }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

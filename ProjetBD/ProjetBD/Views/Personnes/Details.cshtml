@@ -1,0 +1,82 @@
+﻿@model ProjetBD.Models.Personne
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Personne</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.prenom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prenom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.adr_pays)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adr_pays)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.adr_ville)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adr_ville)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.adr_cp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adr_cp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.adr_rue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adr_rue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.adr_numero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adr_numero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.demandeExamen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.demandeExamen)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.numero }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
